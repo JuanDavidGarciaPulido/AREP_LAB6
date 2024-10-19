@@ -1,4 +1,4 @@
-# AREP LAB5: CRUD System to Manage Properties
+# AREP LAB6: Secure Application Design
 
 ### Workshop Summary: Secure Application Design
 
