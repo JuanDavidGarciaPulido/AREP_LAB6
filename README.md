@@ -67,30 +67,77 @@ Before install and run the project you will need:
 5. Access the application at:
    `http://localhost:8080`
 
+## Running the tests
 
-## Deployment on AWS
+To run the automated tests you'll have to type in the console
+```
+mvn test
+```
 
-1. Set up an EC2 instance (LAB6_APACHE) for the Spring Boot backend
-You need to install Java, Git, and Maven on your EC2 instance in order to download and install the backend of the project.   
+![image](https://github.com/user-attachments/assets/526a71d9-50c7-4601-921e-9547a2b82248)
 
-2. Set up another EC2 instance (LAB6_BACKEND) for the MySQL database
-In this new instance, you need to download and install MySQL Server, create the database, the user, and the password for the connection with the backend, and grant all permissions to this user.
-   
-3. Configure security groups to allow necessary traffic between the instances and from the internet to LAB5_BACKEND
 
-7. Build and run the Spring Boot service on LAB5_BACKEND
-   
-9. Ensure MySQL is running and properly configured on Instance 2
 
+## Deployment Instructions
+
+### 1. Frontend Deployment
+   - **Environment**: Deploy the static HTML and JavaScript files on an Amazon EC2 instance running Apache.
+   - **Steps**:
+     1. Install Apache on the instance.
+     2. Place the frontend files in the web server's document root (`/var/www/html`).
+     3. Configure TLS with Let's Encrypt:
+        - Install Certbot.
+        - Generate and install the certificate.
+        - Verify that HTTPS is enabled for the domain.
+
+### 2. Backend Deployment
+   - **Environment**: Deploy the Spring Boot application on a separate EC2 instance with .
+   - **Steps**:
+     1. Install Java 17, Maven 3.8.4 and Git on the instance.
+     2. Clone the repository
+        
+        ```
+        git clone https://github.com/bricenojuliana/AREP-lab-security
+        ```
+        
+     4. Compile the application
+        ```
+        mvn clean install
+        ```
+     6. Run the backend application (`.jar` file).
+        ```
+        sudo java -jar target/jpa-0.0.1-SNAPSHOT.jar
+        ```
+     7. Set up TLS using Let's Encrypt:
+        - Install Certbot.
+        - Use Certbot to create and install certificates for the backend.
+
+### 3. Database Deployment
+   - **Environment**: Use the previous instance.
+   - **Steps**:
+     1. Install MySQL server.
+     2. Configure the database schema for user authentication and property management.
+     3. Secure the MySQL instance by allowing access with a special user.
+
+
+## Requirements
+
+- **Amazon EC2 Instances**
+
+- **Software Dependencies**:
+  - Apache (for serving the frontend).
+  - Java 17 (backend).
+  - MySQL (database).
+  - Certbot (for TLS configuration with Let's Encrypt).
 
 
 ## Usage
 
-https://github.com/user-attachments/assets/106f5ab9-d1c6-4d70-af5c-5e3317e178f2
+https://github.com/user-attachments/assets/406d2e93-18d3-4dc8-9dc6-bf9524dae4e8
 
 ### Architecture Diagram
 
-![image](https://github.com/user-attachments/assets/d17bdbb3-cb33-4d81-8c79-30b7fbe1095f)
+![image](https://github.com/user-attachments/assets/91fd6f34-46a8-49d4-8202-e46a2b2bcc98)
 
 
 ## System Architecture
@@ -132,7 +179,7 @@ This project was developed by Juan David García Pulido.
 
 ## Date
 
-Wednesday, October 2 - 2024
+Friday, October 18 - 2024
 
 ## License
 
